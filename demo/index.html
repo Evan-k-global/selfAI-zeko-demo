@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SelfPay — Agent Treasury</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <nav>
+        <a class="brand" href="#top"><span class="spark">✦</span> self<span>pay</span></a>
+        <div class="network"><i></i> Celo · Agent Treasury</div>
+        <button class="ghost" id="openDocs">Architecture</button>
+      </nav>
+
+      <section class="hero" id="top">
+        <div class="eyebrow">THE AGENT PAYMENT LAYER</div>
+        <h1>Give agents a budget.<br><em>Not a blank check.</em></h1>
+        <p class="lede">SelfPay makes a Self-verified agent a safe, private stablecoin payer on Celo. Define intent once; let your agent pay for the work.</p>
+        <div class="hero-actions">
+          <button class="primary" id="verifyBtn">Verify operator with Self <b>→</b></button>
+          <button class="play" id="tourBtn"><span>▶</span> Run payment simulation</button>
+        </div>
+        <div class="rail"><span>SELF</span><b>verification</b><i></i><span>CELO</span><b>stablecoins</b><i></i><span>ZEKO</span><b>private execution</b></div>
+        <div class="live-registry">LIVE ZEKO SEPOLIA REGISTRY <code>B62qj7ThaMQt1fVRmMceSFxEoDm8CihnoWYAF4kZGSEKx3K3SEE1AWN</code></div>
+      </section>
+
+      <section class="console" aria-label="SelfPay demo console">
+        <div class="console-top"><span>LIVE DEMO</span><div><i></i> policy engine online</div></div>
+        <div class="grid">
+          <article class="card identity">
+            <div class="card-title">01 — Agent passport <button class="mini" id="selfButton">Verify with Self</button></div>
+            <div class="agent-row"><div class="avatar">✦</div><div><strong>Orion Procurement Agent</strong><small id="agentKey">0xA71…92F · operating key</small></div><span class="pill pending" id="identityState">unverified</span></div>
+            <div class="proof-lines" id="proofLines">
+              <div><span>Human-backed</span><b>awaiting proof</b></div>
+              <div><span>Proof freshness</span><b>—</b></div>
+              <div><span>Self Agent ID</span><b>not linked</b></div>
+            </div>
+          </article>
+
+          <article class="card treasury">
+            <div class="card-title">02 — Agent treasury <span class="wallet">◉ Celo</span></div>
+            <div class="balance"><span id="balance">25.00</span><small id="asset">USDT</small></div>
+            <div class="asset-tabs" role="group" aria-label="asset">
+              <button class="active" data-asset="USDT">USDT</button><button data-asset="USDm">USDm</button><button data-asset="USAT">USAT</button>
+            </div>
+            <div class="vault-note">Self-custodial vault · funds never enter the agent’s hot wallet</div>
+          </article>
+
+          <article class="card policy">
+            <div class="card-title">03 — Spend mandate <span class="locked">⌁ owner controlled</span></div>
+            <label>Per payment <output id="perPaymentOut">$0.25</output><input id="perPayment" type="range" min="0.05" max="5" value="0.25" step="0.05" /></label>
+            <label>Daily cap <output id="dailyOut">$5.00</output><input id="daily" type="range" min="1" max="25" value="5" step="1" /></label>
+            <div class="chips"><button class="chip active">Verified vendors only</button><button class="chip active">No restricted regions</button></div>
+          </article>
+
+          <article class="card payment">
+            <div class="card-title">04 — Autonomous payment <span class="status" id="paymentState">ready</span></div>
+            <div class="merchant"><div class="merchant-logo">A</div><div><strong>Atlas Inference</strong><small>model inference · verified merchant</small></div><span>$0.08</span></div>
+            <button class="pay-button" id="payBtn">Pay Atlas $0.08 <b>→</b></button>
+            <p id="paymentHint">Requires an active Self payment passport.</p>
+          </article>
+        </div>
+        <section class="activity">
+          <div class="activity-head"><h2>Payment activity</h2><span id="batch">next Celo settlement in 02:14</span></div>
+          <div class="empty" id="activityEmpty">No payments yet. Verify an operator, then let Orion work.</div>
+          <div class="activity-list" id="activityList"></div>
+        </section>
+      </section>
+
+      <section class="why">
+        <div><span class="eyebrow">BUILT FOR SELF × CELO</span><h2>Trust at the edge.<br>Settlement at the core.</h2></div>
+        <div class="features">
+          <p><b>Self</b><br>Verifies the human behind the agent, exposes policy predicates, and keeps raw identity off the payment rail.</p>
+          <p><b>Celo</b><br>Holds the stablecoins agents actually spend: USDm, USDT, and USAT—plus low-friction stablecoin-native UX.</p>
+          <p><b>Zeko</b><br>Executes high-frequency payment intents, private budget proofs, and batched merchant claims before final settlement.</p>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="docsDialog"><button class="close" id="closeDocs">×</button><div class="modal-kicker">SELF-PAYMENT PASSPORT</div><h2>What the agent proves before it pays.</h2><pre>fresh Self Agent ID
+∧ owner-approved spend policy
+∧ accepted Celo stablecoin
+∧ amount ≤ per-payment limit
+∧ daily spend + amount ≤ daily limit
+∧ verified merchant eligibility
+∧ unspent payment nullifier</pre><p>The merchant receives a policy receipt—not an identity file. See <a href="./README.md" target="_blank">the operator handoff</a> for the production topology.</p></dialog>
+    <script src="./app.js"></script>
+  </body>
+</html>

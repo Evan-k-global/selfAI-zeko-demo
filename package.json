@@ -1,0 +1,22 @@
+{
+  "name": "@self/selfpay-zeko-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "SelfPay: Self-authorized agent stablecoin payment permissions on Zeko.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node build/scripts/test-selfpay-local.js",
+    "deploy:zeko": "npm run build && node build/scripts/deploy-selfpay-zeko.js",
+    "check:zeko": "npm run build && node build/scripts/check-zeko-deployment.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "o1js": "2.13.0",
+    "reflect-metadata": "^0.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2"
+  }
+}
