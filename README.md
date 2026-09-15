@@ -47,6 +47,38 @@ Self keeps the expensive and sensitive work where it belongs: in Self-controlled
 
 No document fields, raw Self nullifier, or cross-merchant identity are stored on Zeko. A full payment rollup can batch mandate and merchant-policy proofs off-chain, committing only the batch/claim root needed by the Celo vault.
 
+## Why this expands Self's stack and ecosystem
+
+SelfPay turns Self from a verification checkpoint into the trust-control plane for an agent payment economy. A Self-operated Zeko execution network, paired with Celo settlement, gives Self the following product and GTM advantages:
+
+| What Self gains | What Zeko + Celo make possible |
+| --- | --- |
+| **A native agent-economy primitive** | Self can issue a Payment Passport at agent activation—not merely return a verification result. Apps can ask, “is this agent authorized for this payment?” without seeing who the operator is. |
+| **Privacy-preserving merchant interoperability** | A merchant receives a policy-valid payment claim, while the underlying human document, raw nullifier, and cross-merchant identity graph stay with Self. This makes Self the portable trust layer across inference, data, SaaS, and onchain-service vendors. |
+| **Fast, predictable agent authorization** | Heavy credential verification and policy proving stay in Self services; Zeko verifies a small Self signature/commitment and updates compact state. Passport issuance and batched intents need not put document circuits in each payment path. |
+| **Celo-native stablecoin distribution** | USDm, USDT, and USAT can be enabled independently behind one mandate experience. Self gets a stablecoin-led agent-payment GTM on Celo without treating the assets as interchangeable or taking on unrestricted agent-key custody. |
+| **Ownable execution and data plane** | Self can operate the payment API, sequencer, proving workers, indexer/archive, and availability/recovery posture under its own service, policy, and commercial controls. The public interface remains Self-branded; Zeko is the invisible execution rail. |
+| **An ecosystem flywheel** | Wallets, agent frameworks, merchants, and Celo apps integrate one passport/claim standard. More supported merchants make a Self-bound agent more useful; more activated agents make Self the default trust surface for machine payments. |
+| **Measured decentralization path** | Start with a permissioned, Self-run pilot and clear SLOs; later distribute sequencer/DA/recovery responsibilities and introduce ecosystem governance where it helps. Self can scale the operating model without rewriting the credential or Celo-settlement interfaces. |
+
+### Sovereign-rollup operating model
+
+“Sovereign” here means Self controls the application policy and operating plane—not that it bypasses Celo's asset rules or proof-verified settlement requirements. The native target is:
+
+```text
+Self control plane                     Self-operated execution plane              Celo money rail
+Enterprise / Agent ID      ─────►      Zeko sequencer + prover workers     ─────►  SelfPayVault
+HSM passport signer                   payment API + private intent store          USDm / USDT / USAT
+policy / revocation service            indexer + archive + DA/recovery             merchant claim redemption
+```
+
+- **Self owns policy:** issuer-key rotation, credential freshness, revocations, merchant eligibility, rate limits, and the commercial terms of a passport.
+- **Self owns operations:** sequencer coordination for live state, prover capacity, and the archive path for receipts/events. Availability/data-recovery responsibilities must be explicit and monitored; they are part of the product, not an implementation detail.
+- **Celo owns settlement finality:** the Celo vault remains the source of truth for stablecoin custody and merchant redemption. The Zeko-to-Celo adapter must accept only verified batch commitments and remain independently audited.
+- **Ethereum is the interoperability proving ground:** use the deployed Zeko Sepolia registry to validate integrations and operations first, then promote the same passport and claim interfaces to the reviewed Celo settlement deployment.
+
+This structure lets Self launch a differentiated payment network now, retain control of the user experience and policy surface, and progressively decentralize infrastructure only when it improves resilience or ecosystem reach.
+
 ## Quick start
 
 ```sh
